@@ -1,0 +1,188 @@
+/* Body Styling */
+body.enquiry-page {
+  padding: 1rem;
+  min-height: 100vh;
+  background: #f0f4f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.institute-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+
+.logo {
+  max-height: 48px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* Logo Styling */
+.logo-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.logo-container img {
+  max-height: 80px; /* Reduced logo size */
+}
+
+/* Form Container */
+.form-section {
+  width: 100%;
+  max-width: 680px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* Form Group & Input Container */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-container {
+  position: relative;
+}
+
+/* Inputs, Selects, Textareas */
+.input-container input,
+.input-container select,
+.input-container textarea {
+  width: 100%;
+  padding: 1.25rem 0.75rem 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #fff;
+  outline: none;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+.input-container label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  background-color: #fff;
+  padding: 0 0.25rem;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+/* Floating behavior */
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container select:focus + label,
+.input-container select:valid + label,
+.input-container textarea:focus + label,
+.input-container textarea:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 0.5rem;
+  font-size: 0.75rem;
+  color: #2563eb;
+}
+
+/* Special Case: Phone Number Field */
+.phone-input-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.phone-input-container .input-container {
+  flex: 1;
+}
+
+/* Submit Button & Back Button */
+.button-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.signup-btn,
+.btn-back {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.signup-btn:hover,
+.btn-back:hover {
+  background: #1e40af;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box h2 {
+  margin-bottom: 10px;
+  color: #28a745;
+}
+
+.popup-box p {
+  margin-bottom: 20px;
+}
+
+.popup-box button {
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .form-section {
+    padding: 1rem;
+  }
+
+  .logo-container img {
+    max-height: 60px;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+}
