@@ -1,34 +1,26 @@
-// ===============================
-// 📦 Imports & Config
-// ===============================
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { Pool } = require('pg');
-require('dotenv').config(); // loads .env locally
+const { Pool } = require("pg");
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ===============================
-// 🧠 Database Configuration
-// ===============================
+// ✅ Choose DB config based on NODE_ENV
 let poolConfig;
 
-// Render automatically provides the env variable RENDER=true
-// So we’ll use that to detect production (Azure DB)
-if (process.env.RENDER) {
+if (process.env.NODE_ENV === "azure") {
   poolConfig = {
     user: process.env.AZURE_DB_USER,
     host: process.env.AZURE_DB_HOST,
     database: process.env.AZURE_DB_NAME,
     password: process.env.AZURE_DB_PASSWORD,
     port: process.env.AZURE_DB_PORT,
-    ssl: { rejectUnauthorized: false } // required for Azure
+    ssl: { rejectUnauthorized: false } // required for Azure PostgreSQL
   };
-  console.log('🌐 Using Azure PostgreSQL Database on Render');
+  console.log("🌐 Using Azure PostgreSQL Database");
 } else {
-  // local development (localhost)
   poolConfig = {
     user: process.env.LOCAL_DB_USER,
     host: process.env.LOCAL_DB_HOST,
@@ -36,21 +28,17 @@ if (process.env.RENDER) {
     password: process.env.LOCAL_DB_PASSWORD,
     port: process.env.LOCAL_DB_PORT
   };
-  console.log('💻 Using Local PostgreSQL Database');
+  console.log("💻 Using Local PostgreSQL Database");
 }
 
 const pool = new Pool(poolConfig);
 
-// ===============================
-// ⚙️ Middleware
-// ===============================
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ===============================
-// 📝 API Route: Enquiry Form
-// ===============================
+// 📝 Enquiry route
 app.post(['/api/enquiry', '/api/enquiry_form'], async (req, res) => {
   const { full_name, phone, email, batch_timings, course, education, passed_out_year } = req.body;
 
@@ -69,29 +57,12 @@ app.post(['/api/enquiry', '/api/enquiry_form'], async (req, res) => {
   }
 });
 
-// ===============================
-// 🧪 Test Route for DB Connection
-// ===============================
-app.get('/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ connected: true, time: result.rows[0].now });
-  } catch (err) {
-    console.error('DB Connection Test Failed:', err);
-    res.status(500).json({ connected: false, error: err.message });
-  }
-});
-
-// ===============================
-// 🏠 Root Route
-// ===============================
+// Root route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'enquiryform.html'));
 });
 
-// ===============================
-// 🚀 Start Server
-// ===============================
+// Start server
 app.listen(port, () => {
-  console.log(`🚀 Server running on port ${port}`);
+  console.log(`🚀 Server running on http://localhost:${port}`);
 });
