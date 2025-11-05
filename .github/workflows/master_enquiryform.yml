@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - Enquiryform
+name: Build and deploy Node.js app to Azure Web App - enquiryform
 
 on:
   push:
@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_36068B7DD500471EBDEFCE1F49B93517 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4AAAA43F4DC6445DB0FD9598F88AE89A }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6A9D5DA608BD4026A096F2DE19DAD651 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6CA3D0A38A294F58A3C6A17EEDD5199C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EA262F9012D247E7A3C2C4B95503FB98 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A60A5AF851A6419F819DE2B39361C6A2 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'Enquiryform'
+          app-name: 'enquiryform'
           slot-name: 'Production'
           package: .
           
